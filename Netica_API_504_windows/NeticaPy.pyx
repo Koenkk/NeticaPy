@@ -13,7 +13,7 @@ cdef extern from "Netica.h":
     cdef enum:
         EVERY_STATE =-5,
         IMPOSS_STATE,
-        UNDEF_STATE  
+        UNDEF_STATE
 
     ctypedef struct environ_ns:
         pass
@@ -57,7 +57,7 @@ cdef extern from "Netica.h":
     ctypedef struct dbmgr_cs:
         pass
 
-    
+
     ctypedef enum  errseverity_ns:
         NOTHING_ERR=1,
         REPORT_ERR,
@@ -65,13 +65,13 @@ cdef extern from "Netica.h":
         WARNING_ERR,
         ERROR_ERR,
         XXX_ERR
-        
+
     ctypedef int     state_bn
     ctypedef float   prob_bn
     ctypedef float   util_bn
     ctypedef double  level_bn
 
-        
+
     ctypedef int     color_ns
     ctypedef long    caseposn_bn
     ctypedef unsigned char bool_ns
@@ -79,7 +79,7 @@ cdef extern from "Netica.h":
     ctypedef enum sampling_bn:
         DEFAULT_SAMPLING,
         JOIN_TREE_SAMPLING,
-        FORWARD_SAMPLING 
+        FORWARD_SAMPLING
 
     ctypedef enum checking_ns:
         NO_CHECK=1,
@@ -101,7 +101,7 @@ cdef extern from "Netica.h":
         USER_ABORTED_CND=0x20,
         FROM_WRAPPER_CND=0x40,
         FROM_DEVELOPER_CND=0x80,
-        INCONS_FINDING_CND=0x200 
+        INCONS_FINDING_CND=0x200
 
     ctypedef enum eventtype_ns:
         CREATE_EVENT=0x01,
@@ -119,7 +119,7 @@ cdef extern from "Netica.h":
         DECISION_NODE,
         UTILITY_NODE,
         DISCONNECTED_NODE,
-        ADVERSARY_NODE 
+        ADVERSARY_NODE
 
     cdef enum:
         REAL_VALUE = -25,
@@ -170,7 +170,7 @@ cdef extern from "Netica.h":
 
     cdef enum:
         ALL_THREADS = 0x20
-        
+
     cdef enum:
         LAST_ENTRY = -10
 
@@ -520,7 +520,7 @@ cdef extern from "Netica.h":
     const char* GetAllNodesets_bn (const net_bn* net, bool_ns include_system, void* vis)
 
     color_ns SetNodesetColor_bn (const char* nodeset, color_ns color, net_bn* net, void* vis)
-    
+
     void ReorderNodesets_bn (net_bn* net, const char* nodeset_order, void* vis)
 
     caseset_cs* NewCaseset_cs (const char* name, environ_ns* env)
@@ -648,9 +648,9 @@ cdef extern from "Netica.h":
     void SetNthState_bn (state_bn* states, int index, state_bn state)
 
     void OptimizeDecisions_bn (const nodelist_bn* nodes)
-    
+
     nodelist_bn* NewNodeList_bn (int length, environ_ns* env)
-    
+
     double GetUndefDbl_ns()
     double GetInfinityDbl_ns()
 
@@ -667,113 +667,113 @@ cdef extern from "NeticaEx.h":
     int main_ex ()
 
     node_bn* GetNode (char* node_name, net_bn* net)
-        
+
     void EnterFinding (char* node_name, char* state_name, net_bn* net)
-        
+
     void SetNodeFinding (node_bn* node, state_bn state)
-        
+
     void SetNodeValue (node_bn* node, double value)
-        
+
     double GetNodeBelief (char* node_name, char* state_name, net_bn* net)
-        
+
     void SetNodeProbs (node_bn* node, ...)
-        
+
     void SetNodeFuncState (node_bn* node, state_bn value, ...)
-        
+
     void SetNodeFuncReal (node_bn* node, double value, ...)
-        
+
     void SetNodeExper (node_bn* node, double value, ...)
-        
+
     void MakeProbsUniform (node_bn* node)
-        
+
     void GetNodeAllProbs (node_bn* node, prob_bn* probs, int num_entries)
-        
+
     bool_ns NextStates (state_bn* states, const nodelist_bn* nodes)
-        
+
     void PrintNodeList (nodelist_bn* nodes)
-        
+
     void RetractFindingsOfNodes (nodelist_bn* nodes, bool_ns do_consts_too)
-        
+
     int FindNodeNamed (const char* name, const nodelist_bn* nodes)
-        
+
     int IndexOfNodeInList (const node_bn* node, const nodelist_bn* nodes)
-        
+
     void RemoveOneNodeFromList (node_bn* node, nodelist_bn* nodes)
-        
+
     void RemoveNodeFromListIfThere (node_bn* node, nodelist_bn* nodes)
-        
+
     void RemoveNthNodeFast (int index, nodelist_bn* nodes)
-        
+
     void DeleteLink (node_bn* parent, node_bn* child)
-        
+
     void DeleteLinks (node_bn* parent, node_bn* child)
-        
+
     void DeleteLinksEntering (node_bn* child)
-        
+
     void SwitchNodeParent (node_bn* parent, node_bn* child, node_bn* new_parent)
-        
+
     void DeleteNodes (nodelist_bn* nodes)
-        
+
     bool_ns IsLinkDisconnected (int link_index, const node_bn* node)
-    
+
     nodelist_bn* TransferNodes (nodelist_bn* nodes, net_bn* new_net)
-        
+
     node_bn* DupNode (node_bn* node)
-        
+
     node_bn* DuplicateNode (node_bn* node, net_bn* new_net)
-        
+
     net_bn* DuplicateNet (net_bn* net, const char* newname)
-        
+
     net_bn* NetNamed (const char* name)
-        
+
     node_bn* FormCliqueWith (const nodelist_bn* nodes)
-        
+
     void AbsorbNode (node_bn* node)
-        
+
     void DeleteNetTables (net_bn* net)
-        
+
     void FadeCPTables (const nodelist_bn* nodes, double degree)
-        
+
     void PrintNeticaVersion ()
-        
+
     void PrintErrors ()
-        
+
     report_ns* NewError (environ_ns* env, int number, errseverity_ns severity, const char* mesg, ...)
-        
+
     void ClearErrors (environ_ns* env, errseverity_ns severity)
 
     void SetNetUserString (net_bn* net, const char* fieldname, const char* str)
-    
+
     const char* GetNetUserString (net_bn* net, const char* fieldname)
-    
+
     void SetNetUserInt (net_bn* net, const char* fieldname, int num)
-    
+
     long GetNetUserInt (net_bn* net, const char* fieldname)
-    
+
     void SetNetUserNumber (net_bn* net, const char* fieldname, double num)
-    
+
     double GetNetUserNumber (net_bn* net, const char* fieldname)
-    
+
     void SetNodeUserString (node_bn* node, const char* fieldname, const char* str)
-    
+
     const char* GetNodeUserString (node_bn* node, const char* fieldname)
-    
+
     void SetNodeUserInt (node_bn* node, const char* fieldname, int num)
-    
+
     long GetNodeUserInt (node_bn* node, const char* fieldname)
-    
+
     void SetNodeUserNumber (node_bn* node, const char* fieldname, double num)
-    
+
     double GetNodeUserNumber (node_bn* node, const char* fieldname)
-    
+
     void PrintConfusionMatrix (tester_bn* tester, node_bn* node)
-    
+
     void CopyNodeRelation_bn (node_bn* dest, const node_bn* src, const nodelist_bn* parent_order_dest)
-    
+
     int MultiDimnIndex (const state_bn states[], const nodelist_bn* nodes)
-    
+
     double SizeCartesianProduct (const nodelist_bn* nodes)
-    
+
     node_bn* MapNode (const node_bn* node, const net_bn* dest_net)
 
     nodelist_bn* MapNodeList (const nodelist_bn* nodes, const net_bn* dest_net)
@@ -783,7 +783,7 @@ cdef extern from "NeticaEx.h":
     nodelist_bn* DisconnectNodeGroup (nodelist_bn* nodes)
 
     char* NodeListToString (const nodelist_bn* nodes)
-    
+
     long CountCasesInFile (stream_ns* casefile)
 
     int RemoveUnusedStates (node_bn* node)
@@ -801,7 +801,7 @@ cdef extern from "NeticaEx.h":
     void RemoveNodeFromList (node_bn* node, nodelist_bn* nodes)
 
     void SetNodeAllProbs (node_bn* node, const prob_bn* probs)
-    
+
 
 
 
@@ -813,7 +813,7 @@ cdef extern from "stdarg.h":
     void va_start(va_list, void* arg)
     void* va_arg(va_list, fake_type)
     void va_end(va_list)
-    fake_type int_type "int" 
+    fake_type int_type "int"
 
 
 cdef class Netica:
@@ -825,7 +825,7 @@ cdef class Netica:
 
     def __repr__(self):
         return self.mesg
-    
+
     def __unicode__(self):
        return unicode(self.mesg)
 
@@ -851,7 +851,7 @@ cdef class Netica:
               for i in self.mesg:
                   mesg.append(i)
         return res
-    
+
     def CloseNetica_bn(self,Netica env, mesg=None):
         cdef int res
         res = CloseNetica_bn(env.env, self.mesg)
@@ -864,7 +864,7 @@ cdef class Netica:
 
     def GetNeticaVersion_bn (self,Netica environ, _version = None):
         cdef int res
-        cdef char* version 
+        cdef char* version
         res = GetNeticaVersion_bn (environ.env if type(environ)==Netica else NULL,&version)
         if type(_version)==bytearray:
               while(len(_version)):
@@ -906,7 +906,7 @@ cdef class Netica:
         else:
             res.value = GetError_ns (environ.env if type(environ)==Netica else NULL, severity, NULL)
         return res
-    
+
     def ErrorNumber_ns (self,Report error):
         cdef int res
         res = ErrorNumber_ns (error.value)
@@ -921,7 +921,7 @@ cdef class Netica:
         cdef errseverity_ns res
         res = ErrorSeverity_ns (error.value)
         return res
-    
+
     def ErrorCategory_ns (self,errcond_ns cond, Report error):
         cdef bool_ns res
         res = ErrorCategory_ns (cond, error.value)
@@ -942,7 +942,7 @@ cdef class Netica:
             for i in self.mesg:
                 mesg.append(i)
         return res
-    
+
     def TestFaultRecovery_ns (self,Netica environ, int test_num):
         cdef int res
         res = TestFaultRecovery_ns (environ.env if type(environ)==Netica else NULL, test_num)
@@ -968,7 +968,7 @@ cdef class Netica:
                 access.append(i)
         free(_access)
         return res
-    
+
     def NewMemoryStream_ns (self,char* name, Netica environ, access=None):
         cdef char* _access
         if access:
@@ -990,12 +990,12 @@ cdef class Netica:
 
     def SetStreamPassword_ns (self,Stream stream, char* password):
         SetStreamPassword_ns (stream.value if type(stream)==Stream else NULL, password)
-        
+
     def SetStreamContents_ns (self,Stream stream,_buffer, long length=0, bool_ns copy=True):
         if not length:
             length=len(_buffer)
         SetStreamContents_ns (stream.value if type(stream)==Stream else NULL,_buffer,length, copy)
-        
+
 
     def GetStreamContents_ns (self,Stream stream,long length=0):
         cdef char* res
@@ -1026,13 +1026,13 @@ cdef class Netica:
         cdef int res
         res = SetCaseFileDelimChar_ns (newchar, environ.env if type(environ)==Netica else NULL)
         return res
-    
+
     def SetMissingDataChar_ns (int newchar, Netica environ):
         cdef int res
         res = SetMissingDataChar_ns (newchar, environ.env if type(environ)==Netica else NULL)
         return res
 
-    def DeleteNet_bn(self,NewNet net): 
+    def DeleteNet_bn(self,NewNet net):
         DeleteNet_bn(net.value)
 
     cpdef NewNet_bn (self,char* name,Netica env):
@@ -1045,17 +1045,17 @@ cdef class Netica:
         res.value = CopyNet_bn (net.value,new_name, environ.env, options)
         return res
 
-    
+
     def GetNthNet_bn (self,int nth, Netica environ):
         res = NewNet()
         res.value = GetNthNet_bn (nth, environ.env)
         return res
-    
+
     cpdef NewNode_bn(self,char* name,int num_states,NewNet net):
         node=NewNode()
         node.run(name,num_states,net)
         return node
-    
+
     def CopyNodes_bn (self,NodeList nodes, NewNet new_net,char* options):
         res = NodeList()
         res.value = CopyNodes_bn (nodes.value, new_net.value, options)
@@ -1110,13 +1110,13 @@ cdef class Netica:
 
     def SetNodeStateName_bn (self,NewNode node, state_bn state, char* state_name):
         SetNodeStateName_bn (node.value, state, state_name)
-        
+
     def SetNodeStateNames_bn (self,NewNode node, char* state_names):
         SetNodeStateNames_bn (node.value,state_names)
 
     def SetNodeStateTitle_bn (self,NewNode node, state_bn state,char* state_title):
         SetNodeStateTitle_bn (node.value,state,state_title)
-        
+
     def SetNodeStateComment_bn (self,NewNode node, state_bn state,char* state_comment):
         SetNodeStateComment_bn (node.value,state,state_comment)
 
@@ -1125,14 +1125,14 @@ cdef class Netica:
 
     def SetNodeEquation_bn (self,NewNode node,char* eqn):
         SetNodeEquation_bn (node.value,eqn)
-        
+
     cdef __SetNodeFuncState_bn_IntList (self,node_bn* node,IntList parent_states,state_bn st):
         SetNodeFuncState_bn (node,parent_states.value,st)
 
     def SetNodeFuncState_bn (self,NewNode node,parent_states, state_bn st):
         cdef state_bn* ps
         if type(parent_states)==IntList:
-            self.__SetNodeFuncState_bn_IntList (node.value,parent_states,st)    
+            self.__SetNodeFuncState_bn_IntList (node.value,parent_states,st)
         elif type(parent_states)==list:
             ps = <state_bn *>malloc(len(parent_states)*cython.sizeof(state_bn))
             for i in range(len(parent_states)):
@@ -1145,7 +1145,7 @@ cdef class Netica:
 
     cdef __SetNodeFuncReal_bn_IntList (self,node_bn* node,IntList parent_states,double val):
         SetNodeFuncReal_bn (node,parent_states.value,val)
-        
+
     def SetNodeFuncReal_bn (self,NewNode node, parent_states, double val):
         cdef state_bn* ps
         if type(parent_states)==IntList:
@@ -1162,13 +1162,13 @@ cdef class Netica:
 
     cdef __SetNodeProbs_bn_IntList_FloatList (self,node_bn* node,IntList parent_states,FloatList probs):
         SetNodeProbs_bn (node,parent_states.value,probs.value)
-        
+
     cdef __SetNodeProbs_bn_IntList (self,node_bn* node,IntList parent_states,prob_bn* probs):
         SetNodeProbs_bn (node,parent_states.value,probs)
-        
+
     cdef __SetNodeProbs_bn_FloatList (self,node_bn* node,state_bn* parent_states,FloatList probs):
         SetNodeProbs_bn (node,parent_states,probs.value)
-        
+
     def SetNodeProbs_bn (self,NewNode node, parent_states, probs):
         cdef prob_bn* _probs
         cdef state_bn* ps
@@ -1203,7 +1203,7 @@ cdef class Netica:
 
     cdef __SetNodeExperience_bn_IntList (self,node_bn* node,IntList parent_states,double experience):
         SetNodeExperience_bn (node,parent_states.value,experience)
-        
+
     def SetNodeExperience_bn (self,NewNode node, parent_states, double experience):
         cdef state_bn* ps
         if type(parent_states)==IntList:
@@ -1220,7 +1220,7 @@ cdef class Netica:
 
     def DeleteNodeTables_bn (self,NewNode node):
         DeleteNodeTables_bn (node.value)
-    
+
     def EnterFinding_bn (self,NewNode node, state_bn state):
         EnterFinding_bn (node.value,state)
 
@@ -1233,7 +1233,7 @@ cdef class Netica:
 
     cdef __EnterNodeLikelihood_bn_FloatList (self,node_bn* node,FloatList likelihood):
         EnterNodeLikelihood_bn (node,likelihood.value)
-        
+
     def EnterNodeLikelihood_bn (self,NewNode node,likelihood):
         cdef prob_bn* _likelihood
         if type(likelihood)==list:
@@ -1245,12 +1245,12 @@ cdef class Netica:
             self.__EnterNodeLikelihood_bn_FloatList (node.value,likelihood)
         else:
             free(_likelihood)
-            raise ValueError("likelihood should be list of float | Floatlist type found: %s" % likelihood)            
+            raise ValueError("likelihood should be list of float | Floatlist type found: %s" % likelihood)
         free(_likelihood)
 
     cdef __EnterNodeCalibration_bn_FloatList (self,node_bn* node,FloatList calibration):
         EnterNodeCalibration_bn (node,calibration.value)
-        
+
     def EnterNodeCalibration_bn (self,NewNode node, calibration):
         cdef prob_bn* _calibration
         if type(calibration)==list:
@@ -1262,7 +1262,7 @@ cdef class Netica:
             self.__EnterNodeCalibration_bn_FloatList (node.value,calibration)
         else:
             free(_calibration)
-            raise ValueError("calibration should be list of float | Floatlist type found: %s" % calibration)          
+            raise ValueError("calibration should be list of float | Floatlist type found: %s" % calibration)
         free(_calibration)
 
     def EnterIntervalFinding_bn (self,NewNode node, double low, double high):
@@ -1280,11 +1280,11 @@ cdef class Netica:
         cdef double res
         res = GetNodeValueEntered_bn (node.value)
         return res
-    
+
     def GetNodeLikelihood_bn (self,NewNode node):
 ##        cdef  prob_bn* res
 ##        cdef int size
-##        size = <int><prob_bn>GetNodeNumberStates_bn (node.value)    
+##        size = <int><prob_bn>GetNodeNumberStates_bn (node.value)
 ##        res = GetNodeLikelihood_bn (node.value)
 ##        return [i for i in res[:size]]
         res = FloatList()
@@ -1292,7 +1292,7 @@ cdef class Netica:
         return res
 
     def RetractNodeFindings_bn (self,NewNode node):
-        RetractNodeFindings_bn (node.value)     
+        RetractNodeFindings_bn (node.value)
 
     def RetractNetFindings_bn (self,NewNet net):
         RetractNetFindings_bn (net.value)
@@ -1317,7 +1317,7 @@ cdef class Netica:
         cdef char* res
         res = CreateCustomReport_bn (net.value,sel_nodes.value if type(sel_nodes) else NULL, templat, options)
         return res
-   
+
     def ReportJunctionTree_bn (self,NewNet net):
         cdef char* res
         res = CreateCustomReport_bn (net.value, NULL, "[[Net.JunctionTreeTable(TextFormat)]]", NULL)
@@ -1364,10 +1364,10 @@ cdef class Netica:
         res.value = GetNodeExpectedUtils_bn (node.value)
         return res
 
-    
+
     cdef __JointProbability_bn_IntList (self,nodelist_bn* nodes,IntList states):
         return JointProbability_bn (nodes,states.value)
-        
+
     def JointProbability_bn (self,NodeList nodes, states):
         cdef double res
         cdef int* _states
@@ -1401,7 +1401,7 @@ cdef class Netica:
             free(_config)
             raise ValueError("config should be list of integer| Intlist type found %s" % type(config))
         free(_config)
-    
+
     def AddNetListener_bn (self,NewNet net,func, _object, int _filter=-1):
         if type(func)==types.FunctionType:
             _object.__temp__function__handler=func
@@ -1415,7 +1415,7 @@ cdef class Netica:
         return AddNodeListener_bn (node.value, callbackNodeNULL,<void*> _object , _filter)
 
     def GenerateRandomCase_bn (self,NodeList nodes, sampling_bn method, double num, RandGen rand):
-        cdef int res 
+        cdef int res
         res = GenerateRandomCase_bn ( nodes.value,  method,  num, rand.value if type(rand)==RandGen else NULL)
         return res
 
@@ -1454,7 +1454,7 @@ cdef class Netica:
         res.value = NewLearner_bn (method, options, environ.env if type(environ)== Netica else NULL)
         free(options)
         return res
-    
+
     def DeleteLearner_bn (self,Learner algo):
         DeleteLearner_bn (algo.value)
 
@@ -1465,18 +1465,18 @@ cdef class Netica:
         cdef int res
         res = SetLearnerMaxIters_bn (algo.value, max_iters)
         return res
-    
+
     def SetLearnerMaxTol_bn (self,Learner algo, double log_likeli_tol):
         cdef double res
         res = SetLearnerMaxTol_bn (algo.value, log_likeli_tol)
         return res
-    
+
     def FadeCPTable_bn (self,NewNode node, double degree):
         FadeCPTable_bn (node.value, degree)
 
     cdef  prob_bn* __GetNodeProbs_bn_IntList (self,node_bn* node,IntList parent_states):
         return GetNodeProbs_bn (node, parent_states.value)
-        
+
     def GetNodeProbs_bn (self,NewNode node,parent_states):
         cdef int* p_states
         res=FloatList()
@@ -1495,7 +1495,7 @@ cdef class Netica:
 
     cdef __GetNodeExperience_bn_IntList (self,node_bn* node,IntList parent_states):
         return GetNodeExperience_bn (node, parent_states.value)
-    
+
     def GetNodeExperience_bn (self,NewNode node,  parent_states):
         cdef double res
         cdef int* p_states
@@ -1516,7 +1516,7 @@ cdef class Netica:
         res = NodeList()
         res.value = NewNodeList2_bn (length,  net.value)
         return res
-    
+
     def AddNodeToList_bn (self,NewNode node, NodeList nodes, int index):
         AddNodeToList_bn (node.value, nodes.value, index)
 
@@ -1557,7 +1557,7 @@ cdef class Netica:
         res = NewNode()
         res.value = GetNodeNamed_bn (name, net.value)
         return res
-    
+
     def GetNetNodes2_bn (self,NewNet net, char* options):
         res = NodeList()
         res.value = GetNetNodes2_bn (net.value,options)
@@ -1582,7 +1582,7 @@ cdef class Netica:
         res = NewNet()
         res.value = GetNodeNet_bn (node.value)
         return res
-    
+
     def GetRelatedNodes_bn (self,NodeList related_nodes,char* relation, NewNode node):
         GetRelatedNodes_bn (related_nodes.value, relation, node.value)
 
@@ -1591,10 +1591,10 @@ cdef class Netica:
 
     cdef __MapStateList_bn_src_IntList (self,IntList src_states, nodelist_bn* src_nodes, state_bn* dest_states, nodelist_bn* dest_nodes):
         MapStateList_bn (src_states.value,src_nodes,dest_states, dest_nodes)
-    
+
     cdef __MapStateList_bn_dest_IntList (self,state_bn* src_states, nodelist_bn* src_nodes, IntList dest_states, nodelist_bn* dest_nodes):
         MapStateList_bn (src_states,src_nodes,dest_states.value, dest_nodes)
-    
+
     cdef __MapStateList_bn_src_dest_IntList (self,IntList src_states, nodelist_bn* src_nodes, IntList dest_states, nodelist_bn* dest_nodes):
         MapStateList_bn (src_states.value,src_nodes,dest_states.value, dest_nodes)
 
@@ -1636,7 +1636,7 @@ cdef class Netica:
             "ID_num" :ID_num,
             "freq" : freq
             }
-    
+
     def NewCaseset_cs (self, char* name,Netica environ):
         res = CaseSet()
         res.value = NewCaseset_cs (name, environ.env if type(environ)==Netica else NULL)
@@ -1659,7 +1659,7 @@ cdef class Netica:
 
     def WriteCaseset_cs (self,CaseSet cases, Stream _file, str _options):
         cdef char* options
-        options = PyString_AsString(_options) if type(_options)== str else NULL        
+        options = PyString_AsString(_options) if type(_options)== str else NULL
         WriteCaseset_cs (cases.value, _file.value if type(_file)==Stream else NULL, options)
         free(options)
 
@@ -1671,23 +1671,23 @@ cdef class Netica:
 
     def RemoveNodeFromNodeset_bn (self,NewNode node, char* nodeset):
         AddNodeToNodeset_bn (node.value,nodeset)
-        
+
     def IsNodeInNodeset_bn(self,NewNode node, char* nodeset):
         cdef bool_ns res
         res = IsNodeInNodeset_bn (node.value, nodeset)
         return res
 
     def ReorderNodesets_bn (self,NewNet net, char* nodeset_order, vis=None):
-        ReorderNodesets_bn (net.value, nodeset_order, NULL if type(vis)==None else <void*> vis)
+        ReorderNodesets_bn (net.value, nodeset_order, NULL if vis==None else <void*> vis)
 
     def GetAllNodesets_bn (self,NewNet net, bool_ns include_system, vis=None):
         cdef char* res
-        res = GetAllNodesets_bn (net.value, include_system, NULL if type(vis)==None else <void*> vis)
+        res = GetAllNodesets_bn (net.value, include_system, NULL if vis==None else <void*> vis)
         return res
 
     def SetNodesetColor_bn (self,char* nodeset, color_ns color, NewNet net, vis=None):
         cdef color_ns res
-        res = SetNodesetColor_bn (nodeset, color, net.value,NULL if type(vis)==None else <void*> vis)
+        res = SetNodesetColor_bn (nodeset, color, net.value,NULL if vis==None else <void*> vis)
         return res
 
     def ReverseLink_bn (self,NewNode parent, NewNode child):
@@ -1729,7 +1729,7 @@ cdef class Netica:
             ReorderNodeStates_bn (node.value, _new_order)
         else:
             free(_new_order)
-            raise ValueError("new_order should be list of integer | Intlist type found:  %s" % type(new_order))            
+            raise ValueError("new_order should be list of integer | Intlist type found:  %s" % type(new_order))
         free(_new_order)
 
     def AddLink_bn(self,NewNode parent,NewNode child):
@@ -1780,7 +1780,7 @@ cdef class Netica:
         res = GetNodeNumberStates_bn (node.value)
         return res
 
-    
+
     def GetNodeStateName_bn (self,NewNode node, state_bn state):
         cdef char* res
         res = GetNodeStateName_bn (node.value, state)
@@ -1815,7 +1815,7 @@ cdef class Netica:
         cdef char* res
         res = GetNodeTitle_bn (node.value)
         return res
-    
+
     def GetNodeComment_bn (self,NewNode node):
         cdef char* res
         res = GetNodeComment_bn (node.value)
@@ -1823,7 +1823,7 @@ cdef class Netica:
 
     cdef double __GetNodeFuncReal_bn_IntList (self,node_bn* node, IntList parent_states):
         return GetNodeFuncReal_bn (node, parent_states.value)
-        
+
     def GetNodeFuncReal_bn (self,NewNode node, parent_states):
         cdef double res
         cdef state_bn* _parent_states
@@ -1839,7 +1839,7 @@ cdef class Netica:
             raise ValueError("parent_states should be list of integer | Intlist type found:  %s" % type(parent_states))
         free(_parent_states)
         return res
-    
+
     cdef state_bn __GetNodeFuncState_bn_IntList (self, node_bn* node, IntList parent_states):
         return GetNodeFuncState_bn (node, parent_states.value)
 
@@ -1882,12 +1882,12 @@ cdef class Netica:
 
 
     def SetNodeVisPosition_bn (self,NewNode node, vis=None, double x=0, double y=0):
-        SetNodeVisPosition_bn (node.value, NULL if type(vis)==None else <void*> vis, x, y)
+        SetNodeVisPosition_bn (node.value, NULL if vis==None else <void*> vis, x, y)
 
     def SetNodeVisStyle_bn (self,NewNode node, vis=None, char* style=""):
-        SetNodeVisStyle_bn (node.value, NULL if type(vis)==None else <void*> vis, style)
+        SetNodeVisStyle_bn (node.value, NULL if vis==None else <void*> vis, style)
 
-    
+
     def GetNetUserField_bn (self,NewNet net, char* name, int length=0, int kind=0):
         cdef char* res
         res = GetNetUserField_bn (net.value, name, &length, kind)
@@ -1902,7 +1902,7 @@ cdef class Netica:
         res = GetNetUserData_bn ( net.value, kind)
         return  None if res==NULL else <object> res
 
-    
+
     def GetNodeInputName_bn (self,NewNode node, int link_index):
         cdef char* res
         res = GetNodeInputName_bn (node.value, link_index)
@@ -1923,13 +1923,13 @@ cdef class Netica:
         return  None if res==NULL else <object> res
 
     def GetNodeVisPosition_bn (self,NewNode node, vis=None, double x=0.0, double y=0.0):
-        GetNodeVisPosition_bn (node.value, NULL if type(vis)==None else <void*> vis, &x, &y)
+        GetNodeVisPosition_bn (node.value, NULL if vis==None else <void*> vis, &x, &y)
 
     def GetNodeVisStyle_bn (self,NewNode node, vis=None):
         cdef char* res
-        res = GetNodeVisStyle_bn (node.value, NULL if type(vis)==None else <void*> vis)
+        res = GetNodeVisStyle_bn (node.value, NULL if vis==None else <void*> vis)
         return res
-    
+
     def IsNodeRelated_bn (self,NewNode related_node,char* relation, NewNode node):
         cdef bool_ns res
         res = IsNodeRelated_bn (related_node.value, relation, node.value)
@@ -1970,7 +1970,7 @@ cdef class Netica:
         options = PyString_AsString(_options) if type(_options)== str else NULL
         InsertFindingsIntoDB_bn (dbmgr.value, nodes.value, column_names, tables, options)
         free(options)
-        
+
 
     def NewNetTester_bn (self,NodeList test_nodes, NodeList unobsv_nodes, int tests):
         res = Tester()
@@ -2033,7 +2033,7 @@ cdef class Netica:
         res.value = ExpandNet_bn (net.value, dimn, result_time,  burn_time,  options)
         free(options)
         return res
-             
+
     def SetNodeInputDelay_bn (self,NewNode node, int link_index, int dimension, char* delay):
         SetNodeInputDelay_bn (node.value,link_index, dimension,  delay)
 
@@ -2042,9 +2042,9 @@ cdef class Netica:
 
     cdef node_bn* __GetNodeAtTime_bn_DoubleList(self,net_bn* net,char* name,DoubleList time):
         return GetNodeAtTime_bn (net, name, time.value)
-        
+
     def GetNodeAtTime_bn (self,NewNet net, char* name, _time):
-        cdef double* time 
+        cdef double* time
         res = NewNode()
         if type(_time)==DoubleList:
             res.value = self.__GetNodeAtTime_bn_DoubleList( net.value,name,_time)
@@ -2080,7 +2080,7 @@ cdef class Netica:
 
     cdef double __GenerateRandomNumbers_ns_DoubleList(self,randgen_ns* rand,DoubleList results, int num, char* options):
         return GenerateRandomNumbers_ns (rand, results.value, num, options)
-    
+
     def GenerateRandomNumbers_ns (self,RandGen rand, _results, int num, str _options):
         cdef double res
         cdef double* results
@@ -2107,7 +2107,7 @@ cdef class Netica:
 
     def SetNetRandomGen_bn (self,NewNet net, RandGen rand, bool_ns is_private):
         SetNetRandomGen_bn (net.value, rand.value, is_private)
-        
+
     def EnterAction_bn (self,NewNode node, state_bn state):
         EnterAction_bn (node.value, state)
 
@@ -2116,7 +2116,7 @@ cdef class Netica:
 
     cdef void __EnterActionRandomized_bn_FloatList (self, node_bn* node, FloatList probs):
         EnterActionRandomized_bn (node, probs.value)
-    
+
     def EnterActionRandomized_bn (self,NewNode node, probs):
         cdef prob_bn* _probs
         if type(probs)== FloatList:
@@ -2141,10 +2141,10 @@ cdef class Netica:
         res = ExecuteScript_ns (scr.value, options)
         free(options)
         return res
-    
+
     cdef double __NthProb_bn_FloatList (self,FloatList probs,state_bn state):
         return NthProb_bn (probs.value, state)
-    
+
     def NthProb_bn (self,  probs, state_bn state):
         cdef double res
         cdef prob_bn* _probs
@@ -2160,11 +2160,11 @@ cdef class Netica:
             raise "probs should be list of float| FloatList type: Found %s" % type(probs)
         free(_probs)
         return res
-    
+
 
     cdef double __NthLevel_bn_DoubleList (self,DoubleList levels,state_bn state):
         return NthLevel_bn( levels.value, state)
-    
+
     def NthLevel_bn (self,  levels, state_bn state):
         cdef double res
         cdef level_bn* _levels
@@ -2180,7 +2180,7 @@ cdef class Netica:
             raise "levels should be list of float| FloatList type: Found %s" % type(levels)
         free(_levels)
         return res
-    
+
     def NthChar_ns (self, char* _str, int index):
         cdef int res
         res = NthChar_ns (_str, index)
@@ -2188,7 +2188,7 @@ cdef class Netica:
 
     cdef __SetNthState_bn_IntList(self,IntList states, int index, state_bn state):
         SetNthState_bn (states.value, index, state)
-        
+
     def SetNthState_bn (self, states, int index, state_bn state):
         cdef state_bn* _states
         if type(states)==IntList:
@@ -2217,13 +2217,13 @@ cdef class Netica:
         cdef double res
         res = GetInfinityDbl_ns()
         return res
-    
+
 
     def GetNodeBelief(self,char* node_name,char* state_name,NewNet net):
         cdef double res
         res = GetNodeBelief (node_name,state_name, net.value)
         return res
-    
+
     def EnterFinding(self,char* node_name, char* state_name, NewNet net):
         EnterFinding(node_name,state_name,net.value)
 
@@ -2247,7 +2247,7 @@ cdef class Netica:
         cdef node_bn* curNode
         cdef char* statename
         cdef state_bn* parent_states
-        cdef nodelist_bn* parents 
+        cdef nodelist_bn* parents
         cdef int pn, numparents
         parents = GetNodeParents_bn (node.value)
         numparents = LengthNodeList_bn (parents)
@@ -2294,7 +2294,7 @@ cdef class Netica:
         cdef prob_bn* probs
         cdef char* statename
         cdef int state, numstates
-        cdef const nodelist_bn* parents 
+        cdef const nodelist_bn* parents
         cdef int pn, numparents, i
         node = node_obj.value
         numstates = GetNodeNumberStates_bn (node)
@@ -2343,13 +2343,13 @@ cdef class Netica:
             SetNodeExperience_bn (node, parent_states, value)
         finally:
             free(parent_states)
-        
+
     def MakeProbsUniform (self,NewNode node):
          MakeProbsUniform (node.value)
 
     def GetNodeAllProbs (self,NewNode node, probs=None, int num_entries=-1):
         cdef prob_bn* _probs
-        cdef const nodelist_bn* parents 
+        cdef const nodelist_bn* parents
         if num_entries==-1:
             parents = GetNodeParents_bn (node.value)
             num_entries = <int> SizeCartesianProduct (parents) * GetNodeNumberStates_bn (node.value)
@@ -2361,10 +2361,10 @@ cdef class Netica:
         else:
             free(_probs)
         return res
-    
+
     cdef bool_ns __NextStates_IntList (self,IntList states, const nodelist_bn* nodes):
         return NextStates (states.value, nodes)
-    
+
     def NextStates (self,states, NodeList nodes):
         cdef bool_ns res
         cdef state_bn* _states
@@ -2380,7 +2380,7 @@ cdef class Netica:
             raise ValueError("states should be list of integer | Intlist type found:  %s" % type(states))
         free(_states)
         return res
-     
+
     def PrintNodeList (self,NodeList nodes):
         PrintNodeList (nodes.value)
 
@@ -2402,10 +2402,10 @@ cdef class Netica:
 
     def RemoveNodeFromListIfThere (self,NewNode node, NodeList nodes):
         RemoveNodeFromListIfThere (node.value, nodes.value)
-        
+
     def RemoveNthNodeFast (self,int index, NodeList nodes):
         RemoveNthNodeFast (index, nodes.value)
-        
+
     def DeleteLink (self,NewNode parent, NewNode child):
         DeleteLink (parent.value, child.value)
 
@@ -2430,7 +2430,7 @@ cdef class Netica:
         res = NodeList()
         res.value = TransferNodes (nodes.value, new_net.value)
         return res
-    
+
     def DupNode (self,NewNode node):
         res = NewNode()
         res.value = DupNode (node.value)
@@ -2445,7 +2445,7 @@ cdef class Netica:
         res = NewNet()
         res.value = NetNamed(name)
         return res
-        
+
     def FormCliqueWith (self,NodeList nodes):
         res = NewNode()
         res.value = FormCliqueWith (nodes.value)
@@ -2484,10 +2484,10 @@ cdef class Netica:
         cdef char* res
         res = GetNetUserString (net.value, fieldname)
         return res
-    
+
     def SetNetUserInt (self,NewNet net, char* fieldname, int num):
         SetNetUserInt (net.value, fieldname,num)
-        
+
     def GetNetUserInt (self,NewNet net, char* fieldname):
         cdef long res
         res = GetNetUserInt (net.value, fieldname)
@@ -2516,7 +2516,7 @@ cdef class Netica:
         cdef long res
         res = GetNodeUserInt (node.value, fieldname)
         return res
-    
+
     def SetNodeUserNumber (self,NewNode node, char* fieldname, double num):
         SetNodeUserNumber (node.value,fieldname,num)
 
@@ -2531,10 +2531,10 @@ cdef class Netica:
     def CopyNodeRelation_bn (self,NewNode dest, NewNode src, NodeList parent_order_dest):
         CopyNodeRelation_bn (dest.value, src.value, parent_order_dest.value)
 
-    
+
     cdef int __MultiDimnIndex_IntList (self,IntList states, const nodelist_bn* nodes):
         return MultiDimnIndex (states.value, nodes)
-    
+
     def MultiDimnIndex (self, states, NodeList nodes):
         cdef int res
         cdef state_bn* _states
@@ -2555,7 +2555,7 @@ cdef class Netica:
         cdef double res
         res = SizeCartesianProduct (nodes.value)
         return res
-        
+
     def MapNode (self,NewNode node, NewNet dest_net):
         res = NewNode()
         res.value = MapNode ( node.value, dest_net.value)
@@ -2565,7 +2565,7 @@ cdef class Netica:
         res = NodeList()
         res.value = MapNodeList (nodes.value, dest_net.value)
         return res
-    
+
     def MapNodeList1 (self,NodeList oldorder, NodeList oldnodes, NodeList newnodes):
         res = NodeList()
         res.value = MapNodeList1 (oldorder.value, oldnodes.value, newnodes.value)
@@ -2659,15 +2659,15 @@ cdef class Netica:
     cdef SetIntval(self,IntList obj,int* ptr):
         free(obj.value)
         obj.value = ptr
-        
+
     cdef SetFloatval(self,FloatList obj,float* ptr):
         free(obj.value)
         obj.value = ptr
-        
+
     cdef SetDoubleval(self,DoubleList obj,double* ptr):
         free(obj.value)
         obj.value = ptr
-        
+
     cdef SetLongval(self,LongList obj,long* ptr):
         free(obj.value)
         obj.value = ptr
@@ -2675,10 +2675,10 @@ cdef class Netica:
 
 
 ## Not supported in windows
-##    
+##
 ##    def MostProbableSetting_bn (self,NewNet net, Setting cas, int nth):
 ##        MostProbableSetting_bn (net.value, cas.value, nth)
-##    
+##
 ##    def DeleteSetting_bn (self,Setting cas):
 ##        DeleteSetting_bn (cas.value)
 ##
@@ -2692,7 +2692,7 @@ cdef class Netica:
 ##
 ##    def ZeroSetting_bn (self,Setting cas):
 ##        ZeroSetting_bn (cas.value)
-##    
+##
 ##    def DeleteScripter_ns (self,Scripter scr):
 ##        DeleteScripter_ns (scr.value)
 ##
@@ -2702,7 +2702,7 @@ cdef class Netica:
 ##        StartScriptRecorder_ns (scr.value,file_name, language,options)
 ##        free(options)
 ##
-##    
+##
 ##    def StopScriptRecorder_ns (self,Scripter scr,char* file_name, str _options):
 ##        cdef char* res
 ##        cdef char* options
@@ -2741,10 +2741,10 @@ cdef class Netica:
 ##    def SetPassword_ns (self,Netica environ,char* password,char* options):
 ##        SetPassword_ns (environ.env if type(environ)==Netica else NULL,password,options)
 ##
-##    def GetAppWindowPosition_ns (self,Netica environ,int left=0,int top=0,int width=0,int height=0,int status=0):        
+##    def GetAppWindowPosition_ns (self,Netica environ,int left=0,int top=0,int width=0,int height=0,int status=0):
 ##        GetAppWindowPosition_ns (environ.env if type(environ)==Netica else NULL, &left, &top, &width, &height, &status)
 ##        return (left, top, width, height, status)
-##    
+##
 ##    def SetAppWindowPosition_ns (self,Netica environ, int left, int top, int width, int height, int status):
 ##        SetAppWindowPosition_ns (environ.env if type(environ)==Netica else NULL,left,top,width,height,status)
 ##
@@ -2757,9 +2757,9 @@ cdef class Netica:
 ##                mesg.append(i)
 ##        return self.mesg
 
-    
+
 #### couln't convert python to unsigned short*
-##    
+##
 ##    def GetNodeLabel_bn (self,NewNode node,unsigned short* label, int max_chars, str _options):
 ##        cdef char* options
 ##        cdef int res
@@ -2787,7 +2787,7 @@ cdef class Setting:
     cdef setting_bn* value
 
 cdef class UserData:
-    cdef void* value 
+    cdef void* value
 
 cdef class Report:
     cdef report_ns* value
@@ -2831,16 +2831,16 @@ cdef class DBmgr:
 
 cdef class Scripter:
     cdef scripter_ns* value
-    
+
 cdef class IntList:
     cdef int* value
-        
+
     def __getitem__(self, item):
 
         x=[]
         prev=0
         i=0
-        
+
         def getWithEclipsis(index):
             index+=1
             assert index<len(item),"The list slice operator shouldn't end with Ellipsis (...)"
@@ -2855,7 +2855,7 @@ cdef class IntList:
                        x.append(self.value[j])
                     return index
             raise TypeError("Invalid type or invalid number is been passed")
-        
+
         def getWithSlice(item):
             start,stop,step=(item.start if not item.start == None else 0,item.stop,item.step if not item.step == None else 1)
             assert type(start)==int,"Invalid slice start type"
@@ -2864,8 +2864,8 @@ cdef class IntList:
             for j in range(start,stop,step):
                 x.append(self.value[j])
             return
-        
- 
+
+
         if type(item)==int:
             x=self.value[item]
         elif type(item)==slice:
@@ -2877,7 +2877,7 @@ cdef class IntList:
                     i+=1
                 elif type(item[i])==int and item[i]>=0:
                     if i+1<len(item) and item[i+1]==Ellipsis:
-                         i=getWithEclipsis(i+1)  
+                         i=getWithEclipsis(i+1)
                     else:
                         x.append(self.value[item[i]])
                         i+=1
@@ -2888,7 +2888,7 @@ cdef class IntList:
         else:
             raise TypeError("Invalid type or invalid number is been passed")
         return x
-    
+
     def __del__(self):
         try:
             free(self.value)
@@ -2900,13 +2900,13 @@ cdef class IntList:
 cdef class FloatList:
     cdef float* value
 
-        
+
     def __getitem__(self, item):
 
         x=[]
         prev=0
         i=0
-        
+
         def getWithEclipsis(index):
             index+=1
             assert index<len(item),"The list slice operator shouldn't end with Ellipsis (...)"
@@ -2921,7 +2921,7 @@ cdef class FloatList:
                        x.append(self.value[j])
                     return index
             raise TypeError("Invalid type or invalid number is been passed")
-        
+
         def getWithSlice(item):
             start,stop,step=(item.start if not item.start == None else 0,item.stop,item.step if not item.step == None else 1)
             assert type(start)==int,"Invalid slice start type"
@@ -2930,8 +2930,8 @@ cdef class FloatList:
             for j in range(start,stop,step):
                 x.append(self.value[j])
             return
-        
- 
+
+
         if type(item)==int:
             x=self.value[item]
         elif type(item)==slice:
@@ -2943,7 +2943,7 @@ cdef class FloatList:
                     i+=1
                 elif type(item[i])==int and item[i]>=0:
                     if i+1<len(item) and item[i+1]==Ellipsis:
-                         i=getWithEclipsis(i+1)  
+                         i=getWithEclipsis(i+1)
                     else:
                         x.append(self.value[item[i]])
                         i+=1
@@ -2954,7 +2954,7 @@ cdef class FloatList:
         else:
             raise TypeError("Invalid type or invalid number is been passed")
         return x
-    
+
     def __del__(self):
         try:
             free(self.value)
@@ -2963,14 +2963,14 @@ cdef class FloatList:
 
 cdef class DoubleList:
     cdef double* value
-    
-        
+
+
     def __getitem__(self, item):
 
         x=[]
         prev=0
         i=0
-        
+
         def getWithEclipsis(index):
             index+=1
             assert index<len(item),"The list slice operator shouldn't end with Ellipsis (...)"
@@ -2985,7 +2985,7 @@ cdef class DoubleList:
                        x.append(self.value[j])
                     return index
             raise TypeError("Invalid type or invalid number is been passed")
-        
+
         def getWithSlice(item):
             start,stop,step=(item.start if not item.start == None else 0,item.stop,item.step if not item.step == None else 1)
             assert type(start)==int,"Invalid slice start type"
@@ -2994,8 +2994,8 @@ cdef class DoubleList:
             for j in range(start,stop,step):
                 x.append(self.value[j])
             return
-        
- 
+
+
         if type(item)==int:
             x=self.value[item]
         elif type(item)==slice:
@@ -3007,7 +3007,7 @@ cdef class DoubleList:
                     i+=1
                 elif type(item[i])==int and item[i]>=0:
                     if i+1<len(item) and item[i+1]==Ellipsis:
-                         i=getWithEclipsis(i+1)  
+                         i=getWithEclipsis(i+1)
                     else:
                         x.append(self.value[item[i]])
                         i+=1
@@ -3018,7 +3018,7 @@ cdef class DoubleList:
         else:
             raise TypeError("Invalid type or invalid number is been passed")
         return x
-    
+
     def __del__(self):
         try:
             free(self.value)
@@ -3027,13 +3027,13 @@ cdef class DoubleList:
 
 cdef class LongList:
     cdef long* value
-        
+
     def __getitem__(self, item):
 
         x=[]
         prev=0
         i=0
-        
+
         def getWithEclipsis(index):
             index+=1
             assert index<len(item),"The list slice operator shouldn't end with Ellipsis (...)"
@@ -3048,7 +3048,7 @@ cdef class LongList:
                        x.append(self.value[j])
                     return index
             raise TypeError("Invalid type or invalid number is been passed")
-        
+
         def getWithSlice(item):
             start,stop,step=(item.start if not item.start == None else 0,item.stop,item.step if not item.step == None else 1)
             assert type(start)==int,"Invalid slice start type"
@@ -3057,8 +3057,8 @@ cdef class LongList:
             for j in range(start,stop,step):
                 x.append(self.value[j])
             return
-        
- 
+
+
         if type(item)==int:
             x=self.value[item]
         elif type(item)==slice:
@@ -3070,7 +3070,7 @@ cdef class LongList:
                     i+=1
                 elif type(item[i])==int and item[i]>=0:
                     if i+1<len(item) and item[i+1]==Ellipsis:
-                         i=getWithEclipsis(i+1)  
+                         i=getWithEclipsis(i+1)
                     else:
                         x.append(self.value[item[i]])
                         i+=1
@@ -3081,7 +3081,7 @@ cdef class LongList:
         else:
             raise TypeError("Invalid type or invalid number is been passed")
         return x
-    
+
     def __del__(self):
         try:
             free(self.value)
@@ -3096,7 +3096,7 @@ cdef int callbackNet (net_bn* net, eventtype_ns what, void* obj, void* info):
 cdef int callbackNetNULL (net_bn* net, eventtype_ns what, void* obj, void* info):
     pass
 
-    
+
 cdef int callbackNode (node_bn* node, eventtype_ns what, void* obj, void* info):
     node_py = NewNode()
     node_py.value = node
