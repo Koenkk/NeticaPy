@@ -1747,22 +1747,22 @@ cdef class Netica:
 
     def GetNetTitle_bn (self, NewNet net):
         cdef char* res
-        res.value = GetNetTitle_bn (net.value)
+        res = GetNetTitle_bn (net.value)
         return res
 
     def GetNetComment_bn (self, NewNet net):
         cdef char* res
-        res.value = GetNetComment_bn (net.value)
+        res = GetNetComment_bn (net.value)
         return res
 
     def GetNetFileName_bn (self, NewNet net):
         cdef char* res
-        res.value = GetNetFileName_bn (net.value)
+        res = GetNetFileName_bn (net.value)
         return res
 
     def GetNodeName_bn (self,NewNode node):
         cdef char* res
-        res.value = GetNodeName_bn ( node.value)
+        res = GetNodeName_bn ( node.value)
         return res
 
     def GetNodeType_bn (self,NewNode node):
